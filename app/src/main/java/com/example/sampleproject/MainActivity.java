@@ -1,7 +1,6 @@
 package com.example.sampleproject;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +9,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -37,6 +41,27 @@ public class MainActivity extends AppCompatActivity {
         EditText et_sPassword = findViewById(R.id.et_Password);
         EditText et_scPassword = findViewById(R.id.et_ConfirmPassword);
         Button bt_signup = findViewById(R.id.bt_signup);
+        LoginButton fbButton = findViewById(R.id.login_button);
+
+        //Registering with callback manager
+
+        CallbackManager callbackManager = CallbackManager.Factory.create();
+        fbButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+
+            }
+        });
 
         // Configure sign-in to request the user's ID, email address, and basic
 // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
